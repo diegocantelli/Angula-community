@@ -11,9 +11,13 @@
       <a class="nav-link"><span class="nav-text">Blogs</span></a>
     </div>
     <div class="header-actions">
-      <a class="nav-link nav-icon">
+
+      <!-- chat: ['users'] -> irá buscar um router-outlet com o nome de char e irá carregar
+        dentro dele o componente associado à rota users -->
+      <a class="nav-link nav-icon" [routerLink]="[{outlets: {chat: ['users']}}]">
         <clr-icon shape="talk-bubbles"></clr-icon>
       </a>
+
       <a class="nav-link nav-icon">
         <clr-icon shape="logout"></clr-icon>
       </a>
@@ -27,3 +31,6 @@
     </div>
   </div>
 </clr-main-container>
+
+<!-- carregando uma rota segundária, que funcionará independente da rota principal -->
+<router-outlet name="chat"></router-outlet>

@@ -21,6 +21,12 @@ const appRoutes: Routes = [
   //path -> define a rota que será utilizada para carregar um determinada componente
   //  não pode conter a "/"
   { path: 'login', component: LoginComponent },
+
+  //outlet -> define onde o componente será carregado, trata-se de uma rota secundária
+  //  irá buscar um router-outlet que tenha definido o name='chat'
+  { path: 'users', component: ChatListComponent, outlet: 'chat', },
+  { path: 'users/:username', component: ChatComponent, outlet: 'chat', },
+
   { path: '', redirectTo: '/forums', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
