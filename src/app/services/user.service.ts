@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 let username = localStorage.getItem('username') || '';
 let guest = (username) ? false : true;
@@ -6,7 +8,7 @@ let guest = (username) ? false : true;
 @Injectable()
 export class UserService {
 
-  constructor() {}
+  constructor(private router: Router) { }
 
   isGuest() {
     return guest;
@@ -26,5 +28,6 @@ export class UserService {
     username = '';
     guest = true;
     localStorage.setItem('username', '');
+    this.router.navigate([{ outlets: { chat: null } }]);
   }
 }

@@ -19,17 +19,17 @@
       </a>
 
       <a class="nav-link nav-icon">
-        <clr-icon shape="logout"></clr-icon>
+        <clr-icon shape="logout" (click)="logout()" *ngIf="!userService.isGuest()></clr-icon>
       </a>
     </div>
   </header>
-  <div class="content-container">
-    <div class="content-area">
-      <!-- necessário utlizar o router-outlet para carregar dinamicamente os componentes com
+  <div class=" content-container">
+          <div class="content-area">
+            <!-- necessário utlizar o router-outlet para carregar dinamicamente os componentes com
       base nas rotas da aplicação -->
-      <router-outlet></router-outlet>
+            <router-outlet></router-outlet>
+          </div>
     </div>
-  </div>
 </clr-main-container>
 
 <!-- carregando uma rota segundária, que funcionará independente da rota principal -->

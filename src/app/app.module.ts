@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { AuthGuardService } from './services/auth-guard.service';
 
 //Routes -> interface que define como uma rota deve ser declarada
 import { RouterModule, Routes } from '@angular/router';
@@ -24,8 +25,9 @@ const appRoutes: Routes = [
 
   //outlet -> define onde o componente será carregado, trata-se de uma rota secundária
   //  irá buscar um router-outlet que tenha definido o name='chat'
-  { path: 'users', component: ChatListComponent, outlet: 'chat', },
-  { path: 'users/:username', component: ChatComponent, outlet: 'chat', },
+  // CanActivate: define o serviço que irá determinar se a rota pode ser acessada ou não
+  { path: 'users', component: ChatListComponent, outlet: 'chat', canActivate: [AuthGuardService] },
+  { path: 'users/:username', component: ChatComponent, outlet: 'chat', canActivate: [AuthGuardService] },
 
   { path: '', redirectTo: '/forums', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
@@ -51,7 +53,10 @@ const appRoutes: Routes = [
     ForumsModule,
   ],
   providers: [
-    UserService
+    UserService,
+
+    //Guardas de rotas necessitam ser declardos em providers
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
