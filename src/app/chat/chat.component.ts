@@ -33,7 +33,10 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.scrollToBottom();
   }
 
-  close() { }
+  close() {
+    //fechando uma rota secundária programaticamente
+    this.router.navigate([{ outlets: { chat: null } }]);
+  }
 
   onKeyUp(event) {
     if (event.keyCode == 13) {
