@@ -29,6 +29,11 @@ const appRoutes: Routes = [
   { path: 'users', component: ChatListComponent, outlet: 'chat', canActivate: [AuthGuardService] },
   { path: 'users/:username', component: ChatComponent, outlet: 'chat', canActivate: [AuthGuardService] },
 
+  //fazendo o lazyLoading de um módulo, existe outra forma de fazer essa importação através de 
+  //  uma função passada como parâmetro de loadChildren
+  { path: 'blogs', loadChildren: 'app/blogs/blogs.module#BlogsModule' },
+
+
   { path: '', redirectTo: '/forums', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
